@@ -1,0 +1,144 @@
+﻿@model ExpenseTracker.Models.Bill
+
+@{
+    ViewBag.Title = "Personal Bill Create";
+}
+
+<h2>Create</h2>
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+<script src="@Url.Content("~/Scripts/jquery-ui-1.8.20.js")" type="text/javascript"></script>
+@*<link href="@Url.Content("~/Content/themes/base/jquery.ui.datepicker.css")" rel="stylesheet" />*@
+
+<link href="@Url.Content("~/Content/themes/base/jquery-ui.css")" rel="stylesheet" />
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Personal Bill</legend>
+        <table>
+            <tr>
+                <td>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.category.CategoryName)
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.category.CategoryName)
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Description)
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-field">
+                         @Html.EditorFor(model => model.Description)
+                         @Html.ValidationMessageFor(model => model.Description)
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Amount)
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.Amount)
+                        @Html.ValidationMessageFor(model => model.Amount)
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.PDate)
+                    </div>
+                </td>
+                <td> 
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.PDate)
+                        @Html.ValidationMessageFor(model => model.PDate)
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.PImage)
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.PImage)
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.ModeOfPayment)
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-field">
+                        @Html.DropDownListFor(model => model.ModeOfPayment, new SelectList(Model.ModeOfPayment,
+                                                  "Value","Text"), "Select..")
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.CheckStatus)
+                    </div>
+                 </td>
+                <td>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.CheckStatus)
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.CheckNumber)
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.CheckNumber)
+                    </div>
+                </td>
+            </tr>
+         </table>
+        
+         <p>
+             <input type="submit" value="Clear" />
+            <input type="submit" value="Add" />
+        </p>
+    </fieldset> 
+}
+
+<div>
+    @Html.ActionLink("Back to Dashboard","DashboardPage","Dashboard")
+</div>
+
+<script type="text/javascript">
+ 
+    $(document).ready(function () {
+        $("#PDate").datepicker({
+            showOn: "button",
+            buttonText: "DatePicker",
+            buttonImage: "../../Images/cal1.png",
+            buttonImageOnly: true
+        });
+    });
+</script>
